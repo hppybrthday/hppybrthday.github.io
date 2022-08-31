@@ -1,33 +1,12 @@
 // Import the data to customize and insert them into page
-const fetchData = () => {
-  fetch("customize.json")
-    .then(data => data.json())
-    .then(data => {
-      dataArr = Object.keys(data);
-      dataArr.map(customData => {
-        if (data[customData] !== "") {
-          if (customData === "imagePath") {
-            document
-              .querySelector(`[data-node-name*="${customData}"]`)
-              .setAttribute("src", data[customData]);
-          } else {
-            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
-          }
-        }
 
-        // Check if the iteration is over
-        // Run amimation if so
-        if ( dataArr.length === dataArr.indexOf(customData) + 1 ) {
-          animationTimeline();
-        } 
-      });
-    });
-};
+
 
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
+  
   const hbd = document.getElementsByClassName("wish-hbd")[0];
 
   textBoxChars.innerHTML = `<span>${textBoxChars.innerHTML
@@ -35,8 +14,11 @@ const animationTimeline = () => {
     .join("</span><span>")}</span`;
 
   hbd.innerHTML = `<span>${hbd.innerHTML
-    .split("")
-    .join("</span><span>")}</span`;
+    .split(" ")
+    .join("</span> <span>")}</span`;
+  
+    
+
 
   const ideaTextTrans = {
     opacity: 0,
@@ -115,7 +97,7 @@ const animationTimeline = () => {
       0.05
     )
     .to(".fake-btn", 0.1, {
-      backgroundColor: "rgb(127, 206, 248)"
+      backgroundColor: "#c069ff"
     })
     .to(
       ".four",
@@ -135,7 +117,7 @@ const animationTimeline = () => {
     .to(".idea-3 strong", 0.5, {
       scale: 1.2,
       x: 10,
-      backgroundColor: "rgb(21, 161, 237)",
+      backgroundColor: "#c069ff",
       color: "#fff"
     })
     .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.5")
@@ -209,20 +191,18 @@ const animationTimeline = () => {
       0.2
     )
     .from(
-      ".lydia-dp",
-      0.5,
+      ".anna-img",
+      .5,
       {
-        scale: 3.5,
+        scale: 0.5,
         opacity: 0,
-        x: 25,
-        y: -25,
-        rotationZ: -45
+        rotationZ: -45,
       },
       "-=2"
     )
     .from(".hat", 0.5, {
       x: -100,
-      y: 350,
+      y: 200,
       rotation: -180,
       opacity: 0
     })
@@ -249,7 +229,7 @@ const animationTimeline = () => {
       {
         scale: 1,
         rotationY: 0,
-        color: "#ff69b4",
+        color: "#c069ff",
         ease: Expo.easeOut
       },
       0.1,
@@ -298,9 +278,23 @@ const animationTimeline = () => {
   // Restart Animation on click
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
-    tl.restart();
+
+    const link = document.createElement('a');
+    link.href = './img/anna2.png';
+    link.download = 'Download.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   });
 };
 
 // Run fetch and animation in sequence
-fetchData();
+
+
+const start = document.getElementsByClassName("open-btn")[0];
+start.onclick = () =>{
+  const audio = document.getElementsByClassName("song")[0];
+  audio.play();
+  animationTimeline();
+  start.style.display = "none"
+}

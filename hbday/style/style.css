@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  overflow: hidden; /* Hide scrollbars */
   margin: 0;
   font-family: "Work Sans", sans-serif;
 }
@@ -80,7 +81,7 @@ body {
   right: 5px;
   bottom: 5px;
   color: #fff;
-  background-color: rgb(21, 161, 237);
+  background-color:#c069ff;
   padding: 5px 8px;
   border-radius: 3px;
 }
@@ -116,18 +117,48 @@ body {
   position: relative;
 }
 
+.six .wish{
+  position: absolute;
+  top:100px;
+  left:80px;
+}
+
 .six img {
   display: inline-block;
   max-width: 100%;
   height: auto;
 }
 
+audio {
+	display: none;
+}
+
+.open-btn{
+  cursor: pointer;
+  width: 50%;
+  background-color: #2dcb97;
+  line-height: 80px;
+  font-size: 18px;
+  color: #FFF;
+  text-align: center;
+  margin: 350px  auto;
+  box-shadow: 0 0 16px 5px #feabed;
+}
+
+.six .anna-img{
+  scale: 0.4;
+  position: relative;
+  top:-100px;
+  left:30;
+}
+
 .six .hat {
   position: absolute;
   width: 80px;
-  top: -35px;
-  left: 41.5%;
-  /* transform: scale(0.1); */
+  top: 220px;
+  left: 46.5%;
+  rotate: 10deg;
+  transform: scale(0.7);
 }
 
 .baloons img {
